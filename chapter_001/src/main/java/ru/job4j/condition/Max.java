@@ -12,7 +12,7 @@ public class Max {
         int result = condition ? right : left;
         return result;
     }
-    public static int max2(int left, int right) {
+    public static int max3(int left, int right) {
         boolean condition = true;
         int result = condition ? left : right;
         return result;

@@ -19,7 +19,7 @@ public class MaxTest {
 
     @Test
     public void whenMax1To1Then() {
-        int result = Max.max2(1, 1);
+        int result = Max.max3(1, 1);
         assertThat(result, is(1));
     }
 }
