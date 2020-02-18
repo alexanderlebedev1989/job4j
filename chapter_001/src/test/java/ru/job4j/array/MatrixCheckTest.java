@@ -40,4 +40,43 @@ public class MatrixCheckTest {
         char[] expect = {'X', 'X', 'X'};
         assertThat(rsl, is(expect));
     }
+
+    @Test
+    public void whenDataMonoByTrueThenTrue() {
+        char[][] board = {
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixCheck.isWin(board);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenDataNotMonoByTrueThenFalse() {
+        char[][] board = {
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', 'X', ' ', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixCheck.isWin(board);
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void whenDataHMonoByTrueThenTrue() {
+        char[][] board = {
+                {' ', ' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' ', ' '},
+                {'X', 'X', 'X', 'X', 'X'},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixCheck.isWin(board);
+        assertThat(result, is(true));
+    }
 }
