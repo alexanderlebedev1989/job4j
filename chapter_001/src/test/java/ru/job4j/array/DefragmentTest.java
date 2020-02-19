@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class DefragmentTest {
 
     @Test
-    public void notFirstNull() {
+    public void notFirstNull1() {
         String[] array = {"I", null, "wanna", null, "be", null, "compressed"};
         String[] compressed = Defragment.compress(array);
         String[] expected = {"I", "wanna", "be", "compressed", null, null, null};
@@ -16,7 +16,7 @@ public class DefragmentTest {
     }
 
     @Test
-    public void firstNull() {
+    public void firstNull1() {
         String[] array = {null, "I", "wanna", null, "be", null, "compressed"};
         String[] compressed = Defragment.compress(array);
         String[] expected = {"I", "wanna", "be", "compressed", null, null, null};
