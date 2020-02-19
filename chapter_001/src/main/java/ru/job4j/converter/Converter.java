@@ -43,7 +43,7 @@ public class Converter {
         int in2 = 5;
         int expected2 = 350;
         int out2 = euroToRuble(in2);
-        boolean passed2 = expected2== out2;
+        boolean passed2 = expected2 == out2;
         System.out.println("5 euro are 350. Test result: " + passed2);
 
         int in3 = 10;
