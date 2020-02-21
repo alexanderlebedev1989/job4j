@@ -79,4 +79,17 @@ public class MatrixCheckTest {
         boolean result = MatrixCheck.isWin1(board);
         assertThat(result, is(true));
     }
+
+    @Test
+    public void whenDataMonoByTrueThenTrue22() {
+        char[][] board = {
+                {'X', 'X', ' ', ' ', ' '},
+                {'X', 'X', ' ', ' ', ' '},
+                {'X', 'X', ' ', ' ', ' '},
+                {'X', 'X', ' ', ' ', ' '},
+                {' ', 'X', ' ', ' ', ' '},
+        };
+        boolean result = MatrixCheck.isWin1(board);
+        assertThat(result, is(true));
+    }
 }
