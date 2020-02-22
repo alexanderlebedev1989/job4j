@@ -4,25 +4,22 @@ import java.util.Arrays;
 public class Merge {
     public int[] merge(int[] left, int[] right) {
         int[] result = new int[left.length + right.length];
-            int l = 0;
-            int r = 0;
-            int c = 0;
+            int iLeft = 0;
+            int iRight = 0;
+            int iResult = 0;
 
-            while (c < result.length) {
-                if (l == left.length && r < right.length) {
-                    result[c] = right[r++];
-                } else if (r == right.length && l < left.length) {
-                    result[c] = left[l++];
-                } else if (l == left.length && r == right.length) {
+            while (iResult < result.length) {
+                if (iLeft == left.length && iRight < right.length) {
+                    result[iResult] = right[iRight++];
+                } else if (iRight == right.length && iLeft < left.length) {
+                    result[iResult] = left[iLeft++];
                     break;
-                } else if (left[l] < right[r]) {
-                    result[c] = left[l++];
-                } else if (left[l] > right[r]) {
-                    result[c] = right[r++];
-                } else if (left[l] == right[r]) {
-                    result[c] = left[l++];
+                } else if (left[iLeft] > right[iRight]) {
+                    result[iResult] = right[iRight++];
+                } else {
+                    result[iResult] = left[iLeft++];
                 }
-            c++;
+            iResult++;
         }
         return result;
     }
