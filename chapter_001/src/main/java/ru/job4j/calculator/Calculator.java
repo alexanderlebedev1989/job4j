@@ -31,6 +31,7 @@ public class Calculator {
      * Main. Метод осуществляет операции сложения, деления, умножения и вычитания.
      * @param args - args
      */
+
     public static void main(String[] args) {
         add(1, 1);
         div(4, 2);

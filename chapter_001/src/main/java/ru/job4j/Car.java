@@ -12,9 +12,11 @@ public class Car {
             System.out.println("Oh. I am tired. I can't drive");
         }
     }
+
     public void fill(int gas) {
         this.volume = this.volume + 10 * gas;
     }
+
     public boolean canDrive() {
         boolean result = this.volume > 0;
         if (result) {
@@ -22,6 +24,7 @@ public class Car {
         }
         return result;
     }
+
     public void gasInfo() {
         System.out.println("I can drive " + this.volume + " kilometers.");
     }

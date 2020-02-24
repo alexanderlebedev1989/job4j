@@ -6,7 +6,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class DefragmentTest {
-
     @Test
     public void notFirstNull1() {
         String[] array = {"I", null, "wanna", null, "be", null, "compressed"};

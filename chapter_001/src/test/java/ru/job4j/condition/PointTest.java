@@ -3,7 +3,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class PointTest {
-
     @Test
     public void distance() {
         int in1 = 0;
@@ -14,6 +13,7 @@ public class PointTest {
         double out = Point.distance(in1, in2, in3, in4);
         Assert.assertEquals(expected, out, 0.01);
     }
+
     @Test
     public void distance1() {
         int in1 = 1;
@@ -24,6 +24,7 @@ public class PointTest {
         double out = Point.distance(in1, in2, in3, in4);
         Assert.assertEquals(expected, out, 0.01);
     }
+
     @Test
     public void distance2() {
         int in1 = 0;

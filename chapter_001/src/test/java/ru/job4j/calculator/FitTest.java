@@ -3,7 +3,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class FitTest {
-
     @Test
     public void manWeight() {
         int in = 100;
