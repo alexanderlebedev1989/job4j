@@ -63,4 +63,15 @@ import static org.junit.Assert.assertThat;
             );
             assertThat(result, is(expect));
         }
+
+    @Test
+    public void whenLeftEmpty1() {
+        Merge algo = new Merge();
+        int[] expect = {1, 2, 3};
+        int[] result = algo.merge(
+                new int[] {1, 2, 3},
+                new int[] {}
+        );
+        assertThat(result, is(expect));
+    }
 }

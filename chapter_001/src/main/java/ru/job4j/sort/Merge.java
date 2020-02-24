@@ -13,7 +13,6 @@ public class Merge {
                     result[iResult] = right[iRight++];
                 } else if (iRight == right.length && iLeft < left.length) {
                     result[iResult] = left[iLeft++];
-                    break;
                 } else if (left[iLeft] > right[iRight]) {
                     result[iResult] = right[iRight++];
                 } else {
