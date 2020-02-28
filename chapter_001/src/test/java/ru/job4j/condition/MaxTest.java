@@ -24,25 +24,14 @@ public class MaxTest {
     }
 
     @Test
-    public void whenMax3Numbers() {
-        double in1 = 1.0;
-        double in2 = 2.0;
-        double in3 = 3.5;
-        double expected = 6.5;
-        double result = Max.add(in1, in2, in3);
-        assertEquals(expected, result, 0.01);
+    public void whenMax4() {
+        int result = Max.max(1, 2, 4);
+        assertThat(result, is(4));
     }
 
     @Test
-    public void whenMax4Numbers() {
-        double in1 = 1.0;
-        double in2 = 2.0;
-        double in3 = 3.5;
-        double in4 = 4;
-        double expected = 10.5;
-        double result = Max.add(in1, in2, in3, in4);
-        assertEquals(expected, result, 0.01);
+    public void whenMax7() {
+        int result = Max.max(1, 2, 4, 7);
+        assertThat(result, is(7));
     }
-
-
 }
