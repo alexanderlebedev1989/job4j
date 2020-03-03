@@ -43,7 +43,7 @@ public class Tracker {
     public boolean replace(String id, Item item) {
         boolean found = false;
         for (int i = 0; i < items.length; i++) {
-            if (items[i] == findById(id)) {
+            if (items[i] == items[indexOf(id)]) {
                 item.setId(id);
                 items[i] = item;
                 found = true;
