@@ -7,14 +7,6 @@ public class Shop {
             products[i] = products[i + 1];
         }
         products[products.length - 1] = null;
-
-        for (Product product : products) {
-            if (product != null) {
-                System.out.println(product.getName());
-            } else {
-                System.out.println("null");
-            }
-        }
         return products;
     }
 
@@ -25,7 +17,13 @@ public class Shop {
         prods[3] = new Product("Egg", 19);
 
         Shop shop = new Shop();
-        shop.delete(prods, 0);
+        for (Product product : shop.delete(prods, 0)) {
+            if (product != null) {
+                System.out.println(product.getName());
+            } else {
+                System.out.println("null");
+            }
+        }
     }
 }
 
