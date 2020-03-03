@@ -63,6 +63,20 @@ public class Tracker {
         }
         return result;
     }
+
+    public boolean delete(String id) {
+        boolean found = false;
+        for (int i = 0; i < position; i++) {
+            if (items[i] == items[indexOf(id)]) {
+                System.arraycopy(items, i + 1, items, i, position - i);
+                items[position - 1] = null;
+                position--;
+                found = true;
+                break;
+            }
+        }
+        return found;
+    }
 }
 
 
