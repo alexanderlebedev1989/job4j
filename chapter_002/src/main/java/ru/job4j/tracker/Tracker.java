@@ -26,12 +26,10 @@ public class Tracker {
         Item[] listOfNames = new Item[position];
         int size = 0;
         for (int i = 0; i < position; i++) {
-            if (this.items[i] != null && (this.items[i].getName().equals(key))) {
-                listOfNames[size] = items[i];
+            if (items[i].getName().equals(key)) {
+                listOfNames[size++] = items[i];
             }
-            size++;
         }
-
         return Arrays.copyOf(listOfNames, size);
     }
 
