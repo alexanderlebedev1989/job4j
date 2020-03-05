@@ -15,14 +15,15 @@ public class Eleven {
                 break;
             }
             System.out.println("Осталость " + s);
+
             System.out.println("Ходит второй игрок");
             int second = Integer.valueOf(input.nextLine());
             s = s - second;
-            System.out.println("Осталось " + s);
             if (s <= 0) {
                 System.out.println("Выиграл второй игрок");
                 break;
             }
+            System.out.println("Осталось " + s);
         }
     }
 }
