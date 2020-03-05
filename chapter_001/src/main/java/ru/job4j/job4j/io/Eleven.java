@@ -5,15 +5,13 @@ public class Eleven {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        boolean run = true;
         int s = 11;
-        while (run) {
+        while (true) {
             System.out.println("Ходит первый игрок");
             int first = Integer.valueOf(input.nextLine());
             s = s - first;
             if (s <= 0) {
                 System.out.println("Выиграл первый игрок");
-                run = false;
                 break;
             }
             System.out.println("Осталость " + s);
@@ -23,7 +21,6 @@ public class Eleven {
             System.out.println("Осталось " + s);
             if (s <= 0) {
                 System.out.println("Выиграл второй игрок");
-                run = false;
                 break;
             }
         }
