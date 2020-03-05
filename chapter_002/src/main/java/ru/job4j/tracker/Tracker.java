@@ -63,9 +63,11 @@ public class Tracker {
     public boolean delete(String id) {
         boolean found = false;
         int index = indexOf(id);
-        System.arraycopy(items, index + 1, items, index, position - index);
-        items[position - 1] = null;
-        position--;
+        if (index != -1) {
+            System.arraycopy(items, index + 1, items, index, position - index);
+            items[position - 1] = null;
+            position--;
+        }
         return found;
     }
 }
