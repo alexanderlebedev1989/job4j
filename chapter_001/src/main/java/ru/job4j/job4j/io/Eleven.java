@@ -8,7 +8,8 @@ public class Eleven {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int s = 11;
-        while (true) {
+        boolean isFinished = false;
+        while (!isFinished) {
             System.out.println("Игра 11");
             System.out.println("Чтобы первый игрок сделал ход, нажмите 1.");
             System.out.println("Чтобы второй игрок сделал ход, нажмите 2.");
