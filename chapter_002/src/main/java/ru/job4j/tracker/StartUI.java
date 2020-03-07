@@ -30,7 +30,6 @@ public class StartUI {
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item newItem = new Item(name);
-                tracker.add(newItem);
                 System.out.println("Enter id: ");
                 String id = scanner.nextLine();
                 if (tracker.replace(id, newItem)) {
@@ -53,7 +52,11 @@ public class StartUI {
                 System.out.print("Enter id: ");
                 String id = scanner.nextLine();
                 Item item = tracker.findById(id);
-                System.out.println(item.getName() + ", " + item.getId());
+                if (item != null) {
+                    System.out.println(item.getName() + ", " + item.getId());
+                } else {
+                    System.out.println("Заявка не найдена");
+                }
             } else if (select == 5) {
                 System.out.println("=== Find items by name ===");
                 System.out.print("Enter key: ");
