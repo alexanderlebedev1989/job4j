@@ -3,13 +3,13 @@ package ru.job4j.poly;
 public class Bus implements Transport {
 
     @Override
-    public void go() {
+    public void iGo() {
         System.out.println("Автобус едет в Санкт-Петербург.");
     }
 
     @Override
     public void take(int passenger) {
-        System.out.println("В Санкт-Петербург едет " + passenger);
+        System.out.println("В Уфу едет " + passenger);
     }
 
     @Override
