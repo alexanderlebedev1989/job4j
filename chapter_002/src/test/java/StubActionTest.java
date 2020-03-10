@@ -1,11 +1,9 @@
 import org.junit.Test;
 import ru.job4j.tracker.*;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class StubActionTest {
-
     @Test
     public void whenExit() {
         StubInput input = new StubInput(
