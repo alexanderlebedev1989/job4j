@@ -1,7 +1,5 @@
 package ru.job4j.ex;
 
-import java.lang.reflect.Array;
-
 public class FindEl {
 
     public static int indexOf(String[] value, String key) throws ElementNotFoundException {
@@ -20,9 +18,8 @@ public class FindEl {
 
     public static void main(String[] args) {
         String[] cars = {"Porsche", "Ford", "Ferrari", "Lada"};
-        FindEl el = new FindEl();
         try {
-            el.indexOf(cars, "Lexus");
+            indexOf(cars, "Lexus");
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
