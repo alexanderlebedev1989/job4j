@@ -9,9 +9,8 @@ public class ShowItemAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        Item[] items = tracker.findAll();
-        for (Item item : items) {
-            System.out.println(item.getName() + ", " + item.getId());
+        for (Item item : tracker.findAll()) {
+            System.out.println(String.format("%s", item.getName() + ", " + item.getId()));
         }
         return true;
     }
