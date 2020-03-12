@@ -20,9 +20,8 @@ public class UserStory {
         String el = user.getUsername();
         if (!user.isValid() || el.length() < 3) {
             throw new UserInvalidException("object is not valid");
-        } else {
-            found = true;
         }
+        found = true;
         return found;
     }
 
@@ -31,15 +30,14 @@ public class UserStory {
                 new User("Petr Arsentev", true)
         };
         try {
-            findUser(users, "Petr Arsentev");
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            if (validate(new User("Petr Arsentev", true))) {
+            User user = findUser(users, "Petr Arsentev");
+            if (user != null) {
+                validate(user);
                 System.out.println("This user has an access");
             }
-        } catch (UserInvalidException e) {
+        } catch (UserInvalidException en) {
+            en.printStackTrace();
+        } catch (UserNotFoundException e) {
             e.printStackTrace();
         }
     }
