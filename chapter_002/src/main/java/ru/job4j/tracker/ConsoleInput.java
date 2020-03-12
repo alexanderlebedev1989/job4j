@@ -27,3 +27,4 @@ public class ConsoleInput implements Input {
     }
 }
 
+
