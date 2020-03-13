@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class BackArray {
     public static void main(String[] args) {
-        String[] names = {"Petr", "Ivan", "Nik", "Vasya"};
+        String[] names = {"Petr", "Ivan", "Nik", "Bob"};
         int middle = names.length / 2;
         for (int index = 0; index <= middle; index++) {
             String temp = names[index];
