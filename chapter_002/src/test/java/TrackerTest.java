@@ -1,6 +1,10 @@
 import org.junit.Test;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -25,8 +29,8 @@ public class TrackerTest {
         tracker.add(item);
         tracker.add(item1);
         tracker.add(item2);
-        Item[] expected = {item, item1, item2};
-        Item[] result = tracker.findAll();
+        List<Item> expected = Arrays.asList(item, item1, item2);
+        List<Item> result = tracker.findAll();
         assertThat(result, is(expected));
     }
 
@@ -44,8 +48,8 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test2");
         tracker.add(item);
-        Item[] expected = {item};
-        Item[] result = tracker.findByName(item.getName());
+        List<Item> expected = Arrays.asList(item);
+        List<Item> result = tracker.findByName(item.getName());
         assertThat(result, is(expected));
     }
     @Test
