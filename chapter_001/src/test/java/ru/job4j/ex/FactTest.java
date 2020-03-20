@@ -10,6 +10,7 @@ public class FactTest {
         int rsl = Fact.calc(2);
         assertThat(rsl, is(1));
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void whenValueIsLessOne() {
         Fact.calc(0);
