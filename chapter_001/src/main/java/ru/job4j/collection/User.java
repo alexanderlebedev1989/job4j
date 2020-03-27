@@ -35,7 +35,7 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User another) {
-        int sort = Integer.compare(name.length(), another.name.length());
+        int sort = name.compareTo(another.name);
         if (sort == 0) {
             sort = Integer.compare(age, another.age);
         }
