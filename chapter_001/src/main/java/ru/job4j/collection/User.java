@@ -32,12 +32,13 @@ public class User implements Comparable<User> {
     public int hashCode() {
         return Objects.hash(name, age);
     }
+
     @Override
     public int compareTo(User another) {
-        if (this.name.length() != another.getName().length()) {
-            return Integer.compare(name.length(), another.name.length());
-        } else {
-            return Integer.compare(age, another.age);
+        int sort = Integer.compare(name.length(), another.name.length());
+        if (sort == 0) {
+            sort = Integer.compare(age, another.age);
         }
+        return sort;
     }
 }
