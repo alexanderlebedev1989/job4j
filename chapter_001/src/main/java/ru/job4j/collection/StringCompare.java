@@ -19,8 +19,8 @@ public class StringCompare implements Comparator<String> {
                 index++;
                 iLeft = left.charAt(index);
                 iRight = right.charAt(index);
+                sort = Integer.compare(left.length(), right.length());
             }
-            sort = Integer.compare(left.length(), right.length());
         }
         return sort;
         }
