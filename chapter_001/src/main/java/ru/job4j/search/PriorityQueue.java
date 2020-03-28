@@ -24,6 +24,6 @@ public class PriorityQueue {
 
 
     public Task take() {
-        return tasks.remove(1);
+        return tasks.remove(0);
     }
 }

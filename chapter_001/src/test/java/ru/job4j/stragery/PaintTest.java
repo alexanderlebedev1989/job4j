@@ -31,12 +31,11 @@ public class PaintTest {
         assertThat(
                 this.out.toString(),
                 is(
-                        new StringBuilder()
-                                .append("++++++++++")
-                                .append("+        +")
-                                .append("+        +")
-                                .append("++++++++++")
-                                .append(System.lineSeparator())
+                        new StringJoiner(System.lineSeparator())
+                                .add("++++++++++")
+                                .add("+        +")
+                                .add("+        +")
+                                .add("++++++++++\r\n")
                                 .toString()
                 )
         );
@@ -48,12 +47,11 @@ public class PaintTest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        new StringBuilder()
-                                .append("     +      ")
-                                .append("   +   +    ")
-                                .append(" +       +  ")
-                                .append("+++++++++++ ")
-                                .append(System.lineSeparator())
+                        new StringJoiner(System.lineSeparator())
+                                .add("     +      ")
+                                .add("   +   +    ")
+                                .add(" +       +  ")
+                                .add("+++++++++++ \r\n")
                                 .toString()
                 )
         );
