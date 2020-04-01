@@ -16,13 +16,13 @@ public class AttachmentSort {
             public int compare(Object o1, Object o2) {
                 Attachment left = (Attachment) o1;
                 Attachment right = (Attachment) o2;
-                return left.getSize() - right.getSize();
+                return right.getSize() - left.getSize();
             }
         };
         attachments.sort(comparator);
         System.out.println(attachments);
 
-        Comparator<Attachment> comparatorName = new Comparator<Attachment>() {
+        Comparator<Attachment> comparatorName = new Comparator<>() {
             @Override
             public int compare(Attachment o1, Attachment o2) {
                 return o1.getName().compareTo(o2.getName());
