@@ -15,6 +15,7 @@ public class PhoneDictionary {
      * @param key Ключ поиска.
      * @return Список подощедщих пользователей.
      */
+
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
         Predicate<Person> combine = person ->
