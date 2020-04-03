@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 public class AddressTest {
     @Test
-    public void whenOrderAddress() {
+    public void whenOrderAddressSort() {
         Address one = new Address("Ufa", "Lenina", 18, 35);
         Address two = new Address("Ufa", "Lenina", 18, 35);
         Address three = new Address("Klin", "Sovetskay", 19, 19);
