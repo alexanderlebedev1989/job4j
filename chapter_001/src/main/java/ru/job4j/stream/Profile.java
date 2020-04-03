@@ -14,11 +14,9 @@ public class Profile {
     }
 
     List<Address> collect(List<Profile> profiles) {
-        List<Address> addresses = new ArrayList<>();
-        addresses = profiles.stream().map(profile -> profile.address).
+        return profiles.stream().map(profile -> profile.address).
                 sorted(Comparator.comparing(Address::getCity)).distinct().
                 collect(Collectors.toList());
-        return addresses;
     }
 }
 
