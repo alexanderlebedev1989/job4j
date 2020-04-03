@@ -3,7 +3,7 @@ package ru.job4j.stream;
 import java.util.Objects;
 
 public class Student {
-    int score;
+    private int score;
 
     public Student(int score) {
         this.score = score;
