@@ -1,9 +1,13 @@
 package ru.job4j.collection;
 
 import org.junit.Test;
+
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -11,12 +15,17 @@ import static org.junit.Assert.*;
 public class UserTest {
     @Test
     public void whenAsc() {
-        Set<User> users = new TreeSet<>();
-        users.add(new User("Ivan", 32));
-        users.add(new User("Ivan", 31));
-        Iterator<User> it = users.iterator();
-        assertThat(it.next(), is(new User("Ivan", 31)));
-        assertThat(it.next(), is(new User("Ivan", 32)));
+        Set<User> result = new TreeSet<>(Set.of(
+                new User("Petr", 32),
+                new User("Lola", 28),
+                new User("Ivan", 31))
+        );
+        Set<User> expected = new TreeSet<>(Set.of(
+                new User("Ivan", 31),
+                new User("Lola", 28),
+                new User("Petr", 32)
+        ));
+        assertThat(result, is(expected));
     }
 
     @Test
