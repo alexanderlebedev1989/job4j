@@ -15,7 +15,6 @@ public class PhoneDictionary {
      * @param key Ключ поиска.
      * @return Список подощедщих пользователей.
      */
-
     public ArrayList<Person> find(String key) {
         var result = new ArrayList<Person>();
         Predicate<Person> predicate1 = person -> person.getName().contains(key) || person.getSurname().contains(key);

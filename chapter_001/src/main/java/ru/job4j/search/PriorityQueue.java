@@ -11,7 +11,6 @@ public class PriorityQueue {
      * Для вставки использовать add(int index, E value)
      * @param task задача
      */
-
     public void put(Task task) {
         var index = 0;
         for (var element : tasks) {
