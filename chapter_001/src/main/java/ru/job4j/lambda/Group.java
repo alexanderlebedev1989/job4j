@@ -8,10 +8,8 @@ public class Group {
     public static Map<String, Set<String>> sections(List<Student> students) {
         return students.stream()
                 .flatMap(student -> {
-                   List<Holder> holder = new ArrayList<>();
-                   for  (var unit : student.getUnits()) {
-                       holder.add(new Holder(unit, student.getName()));
-                   }
+                    var holder = student.getUnits().stream().
+                           map(s -> new Holder(s, student.getName())).collect(Collectors.toList());
                     return holder.stream();
                 }).collect(
                         Collectors.groupingBy(Holder::getKey,
