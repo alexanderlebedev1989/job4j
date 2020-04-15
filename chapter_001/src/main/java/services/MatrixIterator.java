@@ -1,6 +1,7 @@
 package services;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MatrixIterator implements Iterator<Integer> {
     private final int[][] values;
@@ -18,6 +19,9 @@ public class MatrixIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
+        if (row >= values.length) {
+            throw new NoSuchElementException();
+        }
         var el = values[row][column];
         column++;
         while (row < values.length && column >= values[row].length) {
