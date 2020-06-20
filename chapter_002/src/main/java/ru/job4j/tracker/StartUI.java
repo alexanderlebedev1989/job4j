@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StartUI {
-    public void init(Input input, Tracker tracker, List<UserAction> actions) {
+    public void init(Input input, Store tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -23,18 +23,14 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
-        Input validate = new ValidateInput(input);
-        Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(),
-                new ShowItemAction(),
-                new EditAction(),
-                new DeleteAction(),
-                new FindIdAction(),
-                new FindNameAction(),
-                new ExitAction()
-        };
-        new StartUI().init(validate, tracker, Arrays.asList(actions));
+        Input validate = new ValidateInput(new ConsoleInput());
+        try (Store tracker = new SqlTracker()) {
+            tracker.init();
+            UserAction[] actions = {new CreateAction(), new ShowItemAction(), new EditAction(),
+                    new DeleteAction(), new FindIdAction(), new FindNameAction(), new ExitAction()};
+            new StartUI().init(validate, tracker, Arrays.asList(actions));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
