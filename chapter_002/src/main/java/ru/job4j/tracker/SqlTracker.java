@@ -50,7 +50,8 @@ public class SqlTracker implements Store {
         {
             st.setString(1, item.getName());
             st.setString(2, id);
-            st.executeUpdate();
+            int rowsReplaced = st.executeUpdate();
+            if (rowsReplaced == 0) return false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,7 +67,8 @@ public class SqlTracker implements Store {
         try (PreparedStatement st = cn.prepareStatement("DELETE FROM items WHERE item_id = ?"))
         {
             st.setString(1, id);
-            st.executeUpdate();
+            int rowDeleted = st.executeUpdate();
+            if (rowDeleted == 0) return false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,11 +98,15 @@ public class SqlTracker implements Store {
         try (PreparedStatement st = cn.prepareStatement("SELECT item_name, item_id FROM items WHERE item_name = ?"))
         {
             st.setString(1, key);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                Item item = new Item(rs.getString("item_name"));
-                item.setId(rs.getString("item_id"));
-                items.add(item);
+            try (ResultSet rs = st.executeQuery())
+            {
+                if (rs.next()) {
+                    Item item = new Item(rs.getString("item_name"));
+                    item.setId(rs.getString("item_id"));
+                    items.add(item);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -111,15 +117,17 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(String id) {
         Item item = null;
-        try (PreparedStatement st = cn.prepareStatement("SELECT item_name FROM items WHERE item_id = ?")) {
+        try (PreparedStatement st = cn.prepareStatement("SELECT item_name FROM items WHERE item_id = ?"))
+        {
             st.setString(1, id);
-            {
-                ResultSet rs = st.executeQuery();
+            try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     Item temp = new Item(rs.getString("item_name"));
                     temp.setId(id);
                     item = temp;
                 }
+            } catch(SQLException e){
+                e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
