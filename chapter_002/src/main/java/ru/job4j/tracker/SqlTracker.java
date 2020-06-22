@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 public class SqlTracker implements Store {
 
@@ -22,36 +21,37 @@ public class SqlTracker implements Store {
                     config.getProperty("password")
             );
         } catch (Exception e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException("Connection failed. Check the arguments");
         }
     }
 
     @Override
     public Item add(Item item) {
-        item.setId(generateId());
-        try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (item_name, item_id) VALUES (?, ?)"))
-        {
+        try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (item_name) " +
+                "VALUES (?)", Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, item.getName());
-            st.setString(2, item.getId());
             st.executeUpdate();
+            try (ResultSet rs = st.getGeneratedKeys()) {
+                if (rs.next()) {
+                    item.setId(rs.getString(1));
+                    return item;
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return item;
+        throw new IllegalStateException("Could not create new user");
     }
 
     @Override
     public boolean replace(String id, Item item) {
-        Item itemOfTable = findById(id);
-        if (itemOfTable == null) {
-            return false;
-        }
-        try (PreparedStatement st = cn.prepareStatement("UPDATE items SET item_name = ? WHERE item_id = ?"))
-        {
+        try (PreparedStatement st = cn.prepareStatement("UPDATE items SET item_name = ? WHERE id = ?")) {
             st.setString(1, item.getName());
-            st.setString(2, id);
+            st.setInt(2, Integer.parseInt(id));
             int rowsReplaced = st.executeUpdate();
-            if (rowsReplaced == 0) return false;
+            if (rowsReplaced == 0) {
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,15 +60,12 @@ public class SqlTracker implements Store {
 
     @Override
     public boolean delete(String id) {
-        Item itemOfTable = findById(id);
-        if (itemOfTable == null) {
-            return false;
-        }
-        try (PreparedStatement st = cn.prepareStatement("DELETE FROM items WHERE item_id = ?"))
-        {
-            st.setString(1, id);
-            int rowDeleted = st.executeUpdate();
-            if (rowDeleted == 0) return false;
+        try (PreparedStatement st = cn.prepareStatement("DELETE FROM items WHERE id = ?")) {
+            st.setInt(1, Integer.parseInt(id));
+            int rowsDeleted = st.executeUpdate();
+            if (rowsDeleted == 0) {
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,61 +75,55 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement st = cn.prepareStatement("SELECT item_name, item_id FROM items"))
-        {
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Item item = new Item(rs.getString("item_name"));
-                item.setId(rs.getString("item_id"));
-                items.add(item);
+        try (PreparedStatement st = cn.prepareStatement("SELECT * FROM items")) {
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Item item = new Item(rs.getString("item_name"));
+                    item.setId(rs.getString("id"));
+                    items.add(item);
+                }
+                return items;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return items;
+        throw new IllegalStateException("Could not to get application list");
     }
 
     @Override
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement st = cn.prepareStatement("SELECT item_name, item_id FROM items WHERE item_name = ?"))
-        {
+        try (PreparedStatement st = cn.prepareStatement("SELECT * FROM items WHERE item_name = ?")) {
             st.setString(1, key);
-            try (ResultSet rs = st.executeQuery())
-            {
-                if (rs.next()) {
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
                     Item item = new Item(rs.getString("item_name"));
-                    item.setId(rs.getString("item_id"));
+                    item.setId(rs.getString("id"));
                     items.add(item);
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                return items;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return items;
+        throw new IllegalStateException("Could not to get application list");
     }
 
     @Override
     public Item findById(String id) {
-        Item item = null;
-        try (PreparedStatement st = cn.prepareStatement("SELECT item_name FROM items WHERE item_id = ?"))
-        {
-            st.setString(1, id);
+        try (PreparedStatement st = cn.prepareStatement("SELECT item_name FROM items WHERE id = ?")) {
+            st.setInt(1, Integer.parseInt(id));
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    Item temp = new Item(rs.getString("item_name"));
-                    temp.setId(id);
-                    item = temp;
+                    Item item = new Item(rs.getString("item_name"));
+                    item.setId(id);
+                    return item;
                 }
-            } catch(SQLException e){
-                e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return item;
+        return null;
     }
 
     @Override
@@ -140,10 +131,5 @@ public class SqlTracker implements Store {
         if (cn != null) {
             cn.close();
         }
-    }
-
-    private String generateId() {
-        Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
     }
 }
