@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
 
-    private final Connection cn;
+    private Connection cn;
 
     public SqlTracker(Connection cn) {
         this.cn = cn;
@@ -39,8 +39,6 @@ public class SqlTracker implements Store {
                 if (rs.next()) {
                     item.setId(rs.getString(1));
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         } catch (SQLException e) {
             e.printStackTrace();
