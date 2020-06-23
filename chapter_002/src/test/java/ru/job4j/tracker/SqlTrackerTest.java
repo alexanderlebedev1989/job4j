@@ -61,7 +61,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void ShowListItems() throws Exception {
+    public void showListItems() throws Exception {
         try (Store tracker = new SqlTracker(ConnectionRollback.create(SqlTracker.init()))) {
             tracker.add(new Item("test1"));
             tracker.add(new Item("test2"));

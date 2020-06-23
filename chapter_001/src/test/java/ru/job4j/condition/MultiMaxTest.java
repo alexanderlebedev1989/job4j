@@ -1,7 +1,6 @@
 package ru.job4j.condition;
 
 import org.junit.Test;
-import ru.job4j.condition.MultiMax;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

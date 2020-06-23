@@ -7,14 +7,17 @@ public class FindNameAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String key = input.askStr("Enter key: ");
-        for (Item item : tracker.findByName(key)) {
-            System.out.println(String.format("%s", item.getName() + ", " + item.getId()));
+        if (tracker.findByName(key).isEmpty()) {
+            System.out.println("Данные не найдены. Попробуйте снова");
+        } else {
+            for (Item item : tracker.findByName(key)) {
+                System.out.println(String.format("%s", item.getName() + ", " + item.getId()));
+            }
         }
         return true;
     }
-
 }
 
 

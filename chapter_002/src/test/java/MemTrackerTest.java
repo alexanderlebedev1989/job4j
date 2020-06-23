@@ -1,6 +1,6 @@
 import org.junit.Test;
 import ru.job4j.tracker.Item;
-import ru.job4j.tracker.Tracker;
+import ru.job4j.tracker.MemTracker;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,11 +9,11 @@ import static org.hamcrest.core.IsNull.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class TrackerTest {
+public class MemTrackerTest {
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -22,7 +22,7 @@ public class TrackerTest {
 
     @Test
     public void whenGetAllItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         Item item1 = new Item("test2");
         Item item2 = new Item("test3");
@@ -36,7 +36,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByIdThenTrackerFindSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("one");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -45,7 +45,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByNameThenTrackerFindSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test2");
         tracker.add(item);
         List<Item> expected = Arrays.asList(item);
@@ -54,7 +54,7 @@ public class TrackerTest {
     }
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
@@ -65,7 +65,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         Item bug1 = new Item("Bug1");
         Item bug2 = new Item("Bug3");
