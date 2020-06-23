@@ -38,13 +38,12 @@ public class SqlTracker implements Store {
             try (ResultSet rs = st.getGeneratedKeys()) {
                 if (rs.next()) {
                     item.setId(rs.getString(1));
-                    return item;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        throw new IllegalStateException();
+        return item;
     }
 
     @Override
