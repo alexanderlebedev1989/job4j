@@ -39,17 +39,17 @@ public class SqlTrackerTest {
         }
     }
 
-    @Test
-    public void editItem() throws Exception {
-        try (Store tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
-            Item item = new Item("test1");
-            tracker.add(item);
-            tracker.replace(item.getId(), new Item("new"));
-            assertThat(tracker.findByName("new").size(), is(1));
-
-        }
-    }
-
+//    @Test
+//    public void editItem() throws Exception {
+//        try (Store tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+//            Item item = new Item("test1");
+//            tracker.add(item);
+//            tracker.replace(item.getId(), new Item("new"));
+//            assertThat(tracker.findByName("new").size(), is(1));
+//
+//        }
+//    }
+//
 //    @Test
 //    public void deleteItem() throws Exception {
 //        try (Store tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
