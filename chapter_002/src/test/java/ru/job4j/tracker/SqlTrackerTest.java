@@ -17,7 +17,7 @@ public class SqlTrackerTest {
 
     @Test
     public void createItem() throws Exception {
-        try (Store tracker = new SqlTracker(ConnectionRollback.create(SqlTracker.init()))) {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(SqlTracker.init()))) {
             tracker.add(new Item("name"));
             assertThat(tracker.findByName("name").size(), is(1));
         }
