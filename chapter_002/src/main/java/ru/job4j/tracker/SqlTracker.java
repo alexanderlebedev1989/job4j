@@ -8,14 +8,18 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
 
-    private Connection cn;
+    private final Connection cn;
 
-    public void init() {
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
+    public static Connection init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
+            return DriverManager.getConnection(
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
@@ -27,8 +31,8 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (item_name) " +
-                "VALUES (?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement st = cn.prepareStatement("INSERT INTO items (item_name) "
+                + "VALUES (?)", Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, item.getName());
             st.executeUpdate();
             try (ResultSet rs = st.getGeneratedKeys()) {

@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,8 +25,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         Input validate = new ValidateInput(new ConsoleInput());
-        try (Store tracker = new SqlTracker()) {
-            tracker.init();
+        try (Store tracker = new SqlTracker(ConnectionRollback.create(SqlTracker.init()))) {
             UserAction[] actions = {new CreateAction(), new ShowItemAction(), new EditAction(),
                     new DeleteAction(), new FindIdAction(), new FindNameAction(), new ExitAction()};
             new StartUI().init(validate, tracker, Arrays.asList(actions));
