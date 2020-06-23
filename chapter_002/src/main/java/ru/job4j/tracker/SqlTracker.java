@@ -44,7 +44,7 @@ public class SqlTracker implements Store {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        throw new IllegalStateException("Could not create new user");
+        throw new IllegalStateException();
     }
 
     @Override
