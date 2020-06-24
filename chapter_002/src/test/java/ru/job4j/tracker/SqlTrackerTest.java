@@ -84,12 +84,11 @@ public class SqlTrackerTest {
 
     @Test
     public void showListItems() throws Exception {
-        try (Store tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+        try (Store tracker = new SqlTracker(ConnectionRollback.create(SqlTracker.init()))) {
             tracker.add(new Item("test1"));
             tracker.add(new Item("test2"));
             List<Item> result = tracker.findAll();
-            assertThat(result.size(), is(2));
-
+            assertThat(tracker.findAll().containsAll(result), is(true));
         }
     }
 }
