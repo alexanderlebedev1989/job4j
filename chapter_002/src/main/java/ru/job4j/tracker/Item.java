@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 import java.util.Objects;
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "items")
 public class Item {
