@@ -13,9 +13,9 @@ public class MemTracker {
         return item;
     }
 
-    private String generateId() {
+    private int generateId() {
         Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+        return rm.nextInt() + (int)System.currentTimeMillis();
     }
 
     public List<Item> findAll() {
@@ -32,12 +32,12 @@ public class MemTracker {
         return listOfNames;
     }
 
-    public Item findById(String id) {
+    public Item findById(Integer id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
 
-    public boolean replace(String id, Item item) {
+    public boolean replace(Integer id, Item item) {
         boolean found = false;
         int index = indexOf(id);
         if (index != -1) {
@@ -48,7 +48,7 @@ public class MemTracker {
         return found;
     }
 
-    private int indexOf(String id) {
+    private int indexOf(Integer id) {
         int result = -1;
         for (int index = 0; index < items.size(); index++) {
             if (items.get(index).getId().equals(id)) {
@@ -59,7 +59,7 @@ public class MemTracker {
         return result;
     }
 
-    public boolean delete(String id) {
+    public boolean delete(Integer id) {
         boolean found = false;
         int index = indexOf(id);
         if (index != -1) {

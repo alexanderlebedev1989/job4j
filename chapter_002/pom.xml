@@ -30,13 +30,20 @@
                 <executions>
                     <execution>
                         <phase>process-resources</phase>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
+<!--                        <goals>-->
+<!--                            <goal>update</goal>-->
+<!--                        </goals>-->
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.15.Final</version>
+        </dependency>
+    </dependencies>
 
 </project>

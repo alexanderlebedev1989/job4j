@@ -10,7 +10,7 @@ public class EditAction implements UserAction {
     public boolean execute(Input input, Store tracker) {
         String name = input.askStr("Enter name: ");
         Item newItem = new Item(name);
-        String id = input.askStr("Enter id: ");
+        Integer id = Integer.parseInt(input.askStr("Enter id: "));
         if (tracker.replace(id, newItem)) {
             System.out.println("Операция выполнена успешно");
         } else {

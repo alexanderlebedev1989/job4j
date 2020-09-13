@@ -1,6 +1,5 @@
 package ru.job4j.loop;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

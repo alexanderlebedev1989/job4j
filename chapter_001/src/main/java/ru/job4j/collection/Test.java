@@ -1,6 +1,5 @@
 package ru.job4j.collection;
 
-import java.util.List;
 import java.util.Set;
 
 

@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 public class PhoneDictionary {
     private ArrayList<Person> persons = new ArrayList<Person>();
-
     public void add(Person person) {
         this.persons.add(person);
     }

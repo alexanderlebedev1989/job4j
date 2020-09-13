@@ -2,11 +2,8 @@ package ru.job4j.collection;
 
 import org.junit.Test;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
