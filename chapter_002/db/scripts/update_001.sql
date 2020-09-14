@@ -1,4 +1,6 @@
 create table items (
    id serial primary key not null,
-   item_name varchar(2000)
+   name varchar(2000),
+   description TEXT,
+   created TIMESTAMP
 );
