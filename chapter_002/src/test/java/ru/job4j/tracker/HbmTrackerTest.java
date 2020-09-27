@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 
 
 public class HbmTrackerTest {
-
     @Test
     public void whenCreate() {
         HbmTracker tracker = new HbmTracker();
@@ -23,8 +22,9 @@ public class HbmTrackerTest {
         Item item = new Item("test");
         tracker.add(item);
         Item item1 = new Item("test2");
-        Boolean result = tracker.replace(item.getId(), item1);
-        assertEquals(true, result);
+        tracker.replace(item.getId(), item1);
+        List<Item> all = tracker.findAll();
+        assertEquals(item1.getName(), all.get(0).getName());
     }
 
     @Test
