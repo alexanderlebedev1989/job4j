@@ -19,6 +19,8 @@ public class HibernateRun {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             create(new Item("test1", "description test1", new Timestamp(1379810232000L)), sf);
             create(new Item("test2", "description test2", new Timestamp(1344810232000L)), sf);
+
+
         }  catch (Exception e) {
             e.printStackTrace();
         } finally {
