@@ -1,18 +1,18 @@
 package ru.job4j.di;
 
 public class StartUI {
-    private Store store;
+    private ConsoleInput input;
 
-    public StartUI(Store store) {
-        this.store = store;
+    public StartUI(ConsoleInput input) {
+        this.input = input;
     }
 
     public void add(String value) {
-        store.add(value);
+        input.add(value);
     }
 
     public void print() {
-        for (String value : store.getAll()) {
+        for (String value : input.getAll()) {
             System.out.println(value);
         }
     }
