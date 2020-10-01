@@ -1,21 +1,11 @@
 package ru.job4j.di;
+import java.util.Scanner;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Component
-@Scope("prototype")
 public class ConsoleInput {
-    private List<String> data = new ArrayList<String>();
+    private Scanner scanner = new Scanner(System.in);
 
-    public void add(String value) {
-        data.add(value);
-    }
-
-    public List<String> getAll() {
-        return data;
+    public String inputStr() {
+        return scanner.nextLine();
     }
 }

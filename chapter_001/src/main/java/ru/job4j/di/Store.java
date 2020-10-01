@@ -15,6 +15,7 @@ public class Store {
         data.add(value);
     }
 
+
     public List<String> getAll() {
         return data;
     }
