@@ -1,6 +1,5 @@
 package ru.job4j.di;
 
-import com.sun.nio.sctp.SctpStandardSocketOptions;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringDI {
@@ -14,9 +13,7 @@ public class SpringDI {
         another.getAll().forEach(System.out::println);
 
         StartUI ui = context.getBean(StartUI.class);
-        ui.add("Ivan Ivanov");
-        StartUI uiAnother = context.getBean(StartUI.class);
-        uiAnother.print();
+        ui.add();
     }
 }
 
